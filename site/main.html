@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>market</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffaf5;
+            background-image: url("ChatGPT Image 29 сент. 2026 г., 17_31_54.png");
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #333333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            background: #943333;
+            color: #ffffff;
+            padding: 15px 0;
+        }
+
+        .header-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 420px;
+            min-width: 200px;
+            position: relative;
+            order: 2;
+            margin-left: auto;
+        }
+
+        .header-search input {
+            width: 100%;
+            padding: 11px 15px 11px 42px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 25px;
+            background: rgba(253, 253, 253, 0.555);
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .header-search input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .header-search .search-icon {
+            position: absolute;
+            z-index: 1;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease;
+            font-size: 18px;
+            color: #ffffff;
+            pointer-events: none;
+        }
+
+        .logo {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 700;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .logo-icon {
+            font-size: 40px;
+            color: #fbff00;
+            margin-bottom: 7px;
+        }
+
+        .main-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .main-menu a {
+            color: #edf9ea;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: Arial, sans-serif;
+            text-decoration: none;
+        }
+
+        .main-menu a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #fa7000, #ff7300, #ff7300, #ffc400);
+            margin-top: 5px;
+            transition: width 0.3s ease;
+        }
+
+        .main-menu a:hover::after,
+        .main-menu a.active::after {
+            width: 100%;
+        }
+
+        .cart {
+            background: #f08a24;
+            color: #ffffff;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-left: auto;
+            order: 3;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+            .header-search:hover .search-icon {
+                transform: translate(-3px, -50%);
+            }
+
+            .header-search:hover input {
+                transform: scale(1.03);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .cart:hover {
+                transform: scale(1.06);
+                background: #d97818;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .cart-count {
+            background: #ffffff;
+            color: #245b34;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .site-footer {
+            background: #943333;
+            color: #ffffff;
+            padding: 18px 0 16px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .site-footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .site-footer .footer-name {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 8px;
+        }
+
+        .footer-social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .footer-social-link:hover,
+        .footer-social-link:focus-visible {
+            background: #ffffff;
+            color: #943333;
+        }
+
+        .footer-social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-newsletter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .footer-newsletter-label {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .subscribe-form {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            width: min(440px, 100%);
+            min-height: 42px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #333333;
+            font-size: 14px;
+            padding: 0 12px;
+            height: 42px;
+        }
+
+        .subscribe-form input::placeholder {
+            color: #7a7a7a;
+        }
+
+        .subscribe-form button {
+            border: none;
+            background: #f08a24;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 0 18px;
+            height: 42px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .subscribe-form button:hover {
+            background: #dd7d1b;
+        }
+
+    .page {
+        padding: 50px 0;
+    }
+
+    .page-card {
+        max-width: 900px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.4);
+        border: 2px solid #943333;
+        border-radius: 12px;
+        padding: 30px 24px;
+        box-shadow: 0 12px 28px rgba(35, 20, 12, 0.24);
+    }
+
+    .page-title {
+        margin: 0 0 20px;
+        text-align: center;
+        color: #3c2a17;
+        font-size: clamp(28px, 3vw, 40px);
+    }
+
+    .page-text {
+        margin: 0;
+        color: #625c55;
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: center;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+    }
+
+    .info-card {
+        background: rgba(255, 255, 255, 0.3);
+        border: 1px solid #c97b66;
+        border-radius: 12px;
+        padding: 20px 16px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(60, 42, 23, 0.12);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        .info-card:hover {
+            z-index: 1;
+            transform: scale(1.04);
+            box-shadow: 0 10px 20px rgba(60, 42, 23, 0.2);
+        }
+    }
+
+    .info-card h3 {
+        margin: 0 0 10px;
+        color: #943333;
+        font-size: 20px;
+    }
+
+    .info-card p {
+        margin: 0;
+        color: #3c2a17;
+        line-height: 1.6;
+    }
+
+    .content-section {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid rgba(148, 51, 51, 0.35);
+    }
+
+    .section-title {
+        margin: 0 0 12px;
+        color: #3c2a17;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .section-text {
+        max-width: 720px;
+        margin: 0 auto;
+        color: #625c55;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .home-card {
+        border: 0;
+        border-radius: 20px 4px 20px 4px;
+        box-shadow: 0 18px 36px rgba(35, 20, 12, 0.3);
+    }
+
+    .home-card .page-title {
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 18px;
+        border-left: 6px solid #f08a24;
+        text-align: left;
+    }
+
+    .home-card .page-text {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .home-highlights .info-card {
+        border: 0;
+        border-top: 4px solid #943333;
+        border-radius: 4px;
+        box-shadow: none;
+        text-align: left;
+    }
+
+    .home-highlights .info-card:nth-child(1) {
+        background: rgba(245, 222, 214, 0.82);
+        border-top-color: #943333;
+    }
+
+    .home-highlights .info-card:nth-child(2) {
+        background: rgba(222, 237, 224, 0.82);
+        border-top-color: #4f765a;
+    }
+
+    .home-highlights .info-card:nth-child(3) {
+        background: rgba(250, 235, 202, 0.86);
+        border-top-color: #f08a24;
+    }
+
+    .home-actions .info-card {
+        border-style: dashed;
+        border-color: #943333;
+        border-radius: 4px 14px 4px 14px;
+        box-shadow: none;
+        text-align: left;
+    }
+
+    .info-card a {
+        display: inline-block;
+        margin-top: 12px;
+        color: #943333;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .info-card a:hover {
+        color: #f08a24;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 360px) {
+        .main-menu {
+            width: 100%;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .main-menu a {
+            font-size: 12px;
+        }
+    }
+
+    
+    </style>
+</head> 
+<body>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <a class="logo" href="#">
+                <span class="logo-icon">m</span>
+                <span class="logo-text">agnum</span>
+            </a>
+
+            <nav class="main-menu">
+                <a class="active" href="main.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="aboutus.html">О нас</a>
+                <a href="sales.html">Акции</a>
+                <a href="cont.html">Контакты</a>
+            </nav>
+
+            <a class="cart" href="#">
+                <span>Корзина</span>
+                <span class="cart-count">0</span>
+            </a>
+
+            <div class="header-search">
+                <span class="search-icon">🔎</span>
+                <input id="productSearch" type="text" placeholder="Поиск по названию и описанию" aria-label="Поиск по названию и описанию">
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="container">
+            <div class="page-card home-card">
+                <h1 class="page-title">Всё необходимое для дома — в Magnum</h1>
+                <p class="page-text">Собрали продукты для ежедневного стола, быстрых перекусов и семейных покупок. Выберите товары в каталоге или начните с актуальных предложений.</p>
+
+                <div class="info-grid home-highlights">
+                    <div class="info-card">
+                        <h3>Продукты на каждый день</h3>
+                        <p>Молочные продукты, хлеб, овощи и другие привычные покупки в одном каталоге.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Удобный выбор</h3>
+                        <p>Ищите товары по названию и описанию и знакомьтесь с подробностями позиций.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Выгодные предложения</h3>
+                        <p>Заглядывайте в раздел акций, чтобы не пропускать специальные предложения.</p>
+                    </div>
+                </div>
+
+                <section class="content-section">
+                    <h2 class="section-title">С чего начать</h2>
+                    <p class="section-text">Выберите нужные товары или сначала посмотрите, какие предложения доступны сейчас.</p>
+                    <div class="info-grid home-actions">
+                        <div class="info-card">
+                            <h3>Изучить ассортимент</h3>
+                            <p>Откройте список товаров и найдите подходящие продукты.</p>
+                            <a href="catalog.html">Перейти в каталог</a>
+                        </div>
+                        <div class="info-card">
+                            <h3>Посмотреть акции</h3>
+                            <p>Проверьте актуальные скидки и специальные предложения.</p>
+                            <a href="sales.html">Все предложения</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-newsletter">
+            <span class="footer-newsletter-label">Подписка на рассылку:</span>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Введите ваш email">
+                <button type="button">Подписаться</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <span class="footer-name">Magnum</span>
+            <span> — 2026</span>
+            <div class="footer-socials" aria-label="Мы в социальных сетях">
+                <a class="footer-social-link" href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.87 9.87 0 0 0-8.45 14.97L2.3 22l5.16-1.35A9.93 9.93 0 1 0 12.04 2Zm0 18.08a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.06.8.82-2.98-.2-.31a8.18 8.18 0 1 1 6.91 3.81Zm4.49-6.13c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.12-1.05-.39-2-.1-.74-.68-1.24-1.52-1.38-1.77-.15-.25-.02-.39.11-.52.11-.11.25-.3.37-.44.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.13.17 1.77 2.7 4.28 3.78.6.26 1.07.41 1.44.52.6.19 1.15.16 1.58.1.48-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.48-.3Z"/></svg>
+                </a>
+                <a class="footer-social-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>
+                </a>
+                <a class="footer-social-link" href="https://t.me/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 3.2 18.6 20c-.24 1.19-.86 1.48-1.74.92l-4.8-3.54-2.32 2.23c-.26.26-.48.48-.98.48l.35-4.9 8.92-8.06c.39-.35-.08-.54-.6-.19L6.41 14.02l-4.7-1.47c-1.02-.32-1.04-1.02.21-1.51L20.3 3.46c.85-.31 1.6.2 1.5-.26Z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+   
