@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>market</title>
+    <link rel="stylesheet" href="music-player.css">
     <style>
         * {
             box-sizing: border-box;
@@ -528,6 +529,29 @@
             </form>
         </div>
 
+        <div class="music-player" aria-label="Музыкальный плеер">
+            <audio id="background-music" preload="metadata" loop>
+                <source src="jonasblakewood-background-music-618629.mp3" type="audio/mpeg">
+            </audio>
+            <div class="music-player__heading">
+                <span class="music-player__icon" aria-hidden="true">♫</span>
+                <div class="music-player__track">
+                    <span class="music-player__title">Фоновая музыка</span>
+                    <span class="music-player__subtitle">Magnum · музыка сайта</span>
+                </div>
+            </div>
+            <div class="music-player__controls">
+                <button class="music-player__button" id="music-play" type="button" aria-label="Воспроизвести" aria-pressed="false">▶</button>
+                <div class="music-player__timeline">
+                    <span class="music-player__time" id="music-current-time">0:00</span>
+                    <input id="music-progress" type="range" min="0" max="0" value="0" aria-label="Позиция воспроизведения">
+                    <span class="music-player__time" id="music-duration">0:00</span>
+                </div>
+                <input class="music-player__volume" id="music-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Громкость">
+            </div>
+            <span class="music-player__status" id="music-status" role="status" aria-live="polite"></span>
+        </div>
+
         <div class="container">
             <span class="footer-name">Magnum</span>
             <span> — 2026</span>
@@ -544,25 +568,5 @@
             </div>
         </div>
     </footer>
-    <audio id="background-music" controls autoplay loop>
-        <source src="jonasblakewood-background-music-618629.mp3" type="audio/mpeg">
-    </audio>
-    <script>
-        var backgroundMusic = document.getElementById('background-music');
-
-        function startBackgroundMusic() {
-            var playAttempt = backgroundMusic.play();
-            if (playAttempt) {
-                playAttempt.catch(function(error) {
-                    if (error.name !== 'NotAllowedError') {
-                        console.error('Не удалось запустить фоновую музыку:', error);
-                    }
-                });
-            }
-        }
-
-        startBackgroundMusic();
-        document.addEventListener('pointerdown', startBackgroundMusic, { once: true });
-        document.addEventListener('keydown', startBackgroundMusic, { once: true });
-    </script>
+    <script src="music-player.js"></script>
    
