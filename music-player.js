@@ -1,4 +1,75 @@
 (function () {
+    var canvas = document.getElementById('rainfall');
+    var context = canvas && canvas.getContext('2d');
+
+    if (!canvas || !context) {
+        return;
+    }
+
+    var width = 0;
+    var height = 0;
+    var drops = [];
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resizeCanvas() {
+        var pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+        var dropCount = Math.min(260, Math.max(40, Math.floor(width * height / 7000)));
+        drops = [];
+        for (var i = 0; i < dropCount; i += 1) {
+            drops.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: 10 + Math.random() * 14,
+                speed: 4 + Math.random() * 4
+            });
+        }
+    }
+
+    function animateRain() {
+        context.clearRect(0, 0, width, height);
+        context.strokeStyle = 'rgba(110, 160, 190, 0.55)';
+        context.lineWidth = 1.2;
+        context.lineCap = 'round';
+
+        for (var i = 0; i < drops.length; i += 1) {
+            var drop = drops[i];
+            context.beginPath();
+            context.moveTo(drop.x, drop.y);
+            context.lineTo(drop.x - drop.length * 0.25, drop.y + drop.length);
+            context.stroke();
+
+            if (!reducedMotion) {
+                drop.x -= drop.speed * 0.25;
+                drop.y += drop.speed;
+                if (drop.y > height + drop.length) {
+                    drop.x = Math.random() * width;
+                    drop.y = -drop.length;
+                }
+            }
+        }
+
+        if (!reducedMotion) {
+            window.requestAnimationFrame(animateRain);
+        }
+    }
+
+    resizeCanvas();
+    animateRain();
+    window.addEventListener('resize', function () {
+        resizeCanvas();
+        if (reducedMotion) {
+            animateRain();
+        }
+    });
+})();
+
+(function () {
     var audio = document.getElementById('background-music');
     var playButton = document.getElementById('music-play');
     var progress = document.getElementById('music-progress');
