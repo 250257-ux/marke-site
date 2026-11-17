@@ -368,6 +368,118 @@
             margin: 0;
         }
 
+        .product-feedback {
+            flex-shrink: 0;
+            min-width: 154px;
+            padding: 10px 12px;
+            border: 1px solid rgba(148, 51, 51, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 250, 245, 0.82);
+        }
+
+        .feedback-label {
+            display: block;
+            margin-bottom: 4px;
+            color: #6d3333;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .rating-star {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #c9b9a2;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .rating-star:hover,
+        .rating-star.selected {
+            color: #f08a24;
+        }
+
+        .rating-star:hover {
+            transform: scale(1.15);
+        }
+
+        .rating-star:focus-visible,
+        .vote-button:focus-visible {
+            outline: 2px solid #f08a24;
+            outline-offset: 2px;
+        }
+
+        .rating-value {
+            min-width: 28px;
+            margin-left: 4px;
+            color: #6d3333;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .votes {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .vote-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 8px;
+            border: 1px solid rgba(148, 51, 51, 0.2);
+            border-radius: 16px;
+            background: #ffffff;
+            color: #582e2e;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .vote-button:hover {
+            background: #fff0df;
+            transform: translateY(-1px);
+        }
+
+        .vote-count {
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .product-row {
+                flex-wrap: wrap;
+            }
+
+            .product-info {
+                min-width: calc(100% - 130px);
+            }
+
+            .product-feedback {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .feedback-label {
+                margin: 0;
+            }
+
+            .votes {
+                margin: 0;
+            }
+        }
+
         .site-footer {
             background: #943333;
             color: #ffffff;
@@ -624,6 +736,27 @@
                             <p>Свежее домашнее молоко без добавок.</p>
                             <a href="#" onclick="showProduct('Молоко', 'images.jpg', 'Свежее домашнее молоко без добавок.');">Подробнее</a>
                         </div>
+                        <div class="product-feedback" aria-label="Оценка товара Молоко">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Молоко">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="product-row" data-category="bakery" data-search="хлеб натуральный хлеб из пшеничной муки">
@@ -634,6 +767,27 @@
                             <h3>Хлеб</h3>
                             <p>Натуральный хлеб из пшеничной муки.</p>
                             <a href="#" onclick="showProduct('Хлеб', 'bread.jpg', 'Натуральный хлеб из пшеничной муки.');">Подробнее</a>
+                        </div>
+                        <div class="product-feedback" aria-label="Оценка товара Хлеб">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Хлеб">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -646,6 +800,27 @@
                             <p>Свежий набор полезных овощей.</p>
                             <a href="#" onclick="showProduct('Овощи', 'vegetables.jpg', 'Свежий набор полезных овощей.');">Подробнее</a>
                         </div>
+                        <div class="product-feedback" aria-label="Оценка товара Овощи">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Овощи">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="product-row" data-category="eggs" data-search="яйца свежие яйца от проверенных фермеров">
@@ -656,6 +831,27 @@
                             <h3>Яйца</h3>
                             <p>Свежие яйца от проверенных фермеров.</p>
                             <a href="#" onclick="showProduct('Яйца', 'egg.jpg', 'Свежие яйца от проверенных фермеров.');">Подробнее</a>
+                        </div>
+                        <div class="product-feedback" aria-label="Оценка товара Яйца">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Яйца">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -668,6 +864,27 @@
                             <p>Натуральный фермерский сыр из свежего молока.</p>
                             <a href="#" onclick="showProduct('Сыр', 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=900&q=80', 'Натуральный фермерский сыр из свежего молока.');">Подробнее</a>
                         </div>
+                        <div class="product-feedback" aria-label="Оценка товара Сыр">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Сыр">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="product-row" data-category="produce" data-search="яблоки сочные свежие яблоки из сада">
@@ -679,6 +896,27 @@
                             <p>Сочные свежие яблоки из сада.</p>
                             <a href="#" onclick="showProduct('Яблоки', 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=900&q=80', 'Сочные свежие яблоки из сада.');">Подробнее</a>
                         </div>
+                        <div class="product-feedback" aria-label="Оценка товара Яблоки">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Яблоки">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="product-row" data-category="grocery" data-search="мёд натуральный цветочный мёд">
@@ -689,6 +927,27 @@
                             <h3>Мёд</h3>
                             <p>Натуральный цветочный мёд от местных пасечников.</p>
                             <a href="#" onclick="showProduct('Мёд', 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=900&q=80', 'Натуральный цветочный мёд от местных пасечников.');">Подробнее</a>
+                        </div>
+                        <div class="product-feedback" aria-label="Оценка товара Мёд">
+                            <div>
+                                <span class="feedback-label">Оцените товар</span>
+                                <div class="rating" role="group" aria-label="Рейтинг товара Мёд">
+                                    <button class="rating-star" type="button" data-value="1" aria-label="1 звезда" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="2" aria-label="2 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="3" aria-label="3 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="4" aria-label="4 звезды" aria-pressed="false">★</button>
+                                    <button class="rating-star" type="button" data-value="5" aria-label="5 звёзд" aria-pressed="false">★</button>
+                                    <span class="rating-value" aria-live="polite">—/5</span>
+                                </div>
+                            </div>
+                            <div class="votes" aria-label="Голосование">
+                                <button class="vote-button" type="button" aria-label="Нравится">
+                                    <span aria-hidden="true">👍</span><span class="vote-count">0</span>
+                                </button>
+                                <button class="vote-button" type="button" aria-label="Не нравится">
+                                    <span aria-hidden="true">👎</span><span class="vote-count">0</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -842,6 +1101,28 @@ function filterProducts() {
 }
 
 searchInput.addEventListener('input', filterProducts);
+
+productList.addEventListener('click', function(event) {
+    const star = event.target.closest('.rating-star');
+    if (star) {
+        const rating = star.closest('.rating');
+        const selectedValue = Number(star.dataset.value);
+
+        rating.querySelectorAll('.rating-star').forEach(function(ratingStar) {
+            const starValue = Number(ratingStar.dataset.value);
+            ratingStar.classList.toggle('selected', starValue <= selectedValue);
+            ratingStar.setAttribute('aria-pressed', String(starValue === selectedValue));
+        });
+        rating.querySelector('.rating-value').textContent = selectedValue + '/5';
+        return;
+    }
+
+    const voteButton = event.target.closest('.vote-button');
+    if (voteButton) {
+        const voteCount = voteButton.querySelector('.vote-count');
+        voteCount.textContent = String(Number(voteCount.textContent) + 1);
+    }
+});
 
 categoryFilters.forEach(function(filter) {
     filter.addEventListener('click', function() {
